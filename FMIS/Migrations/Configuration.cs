@@ -9,7 +9,8 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
+            ContextKey = "FMIS.Models.Medicaldbcontext";
         }
 
         protected override void Seed(FMIS.Models.Medicaldbcontext context)

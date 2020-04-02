@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FMS : DbMigration
+    public partial class dde_third : DbMigration
     {
         public override void Up()
         {
@@ -15,6 +15,7 @@
                         Disease = c.Int(nullable: false),
                         WhatToEat = c.String(),
                         NotToEat = c.String(),
+                        dieticianid = c.Int(),
                         Dietician_did = c.Int(),
                     })
                 .PrimaryKey(t => t.ddeID)

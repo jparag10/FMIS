@@ -3,25 +3,10 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FMS1 : DbMigration
+    public partial class initialmodel : DbMigration
     {
         public override void Up()
         {
-            CreateTable(
-                "dbo.DieticianDataEntries",
-                c => new
-                    {
-                        ddeID = c.Int(nullable: false, identity: true),
-                        Disease = c.Int(nullable: false),
-                        WhatToEat = c.String(),
-                        NotToEat = c.String(),
-                        dieticianid = c.Int(),
-                        Dietician_did = c.Int(),
-                    })
-                .PrimaryKey(t => t.ddeID)
-                .ForeignKey("dbo.Dieticians", t => t.Dietician_did)
-                .Index(t => t.Dietician_did);
-            
             CreateTable(
                 "dbo.Dieticians",
                 c => new
@@ -58,12 +43,9 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.DieticianDataEntries", "Dietician_did", "dbo.Dieticians");
             DropIndex("dbo.Dieticians", new[] { "Email" });
-            DropIndex("dbo.DieticianDataEntries", new[] { "Dietician_did" });
             DropTable("dbo.Users");
             DropTable("dbo.Dieticians");
-            DropTable("dbo.DieticianDataEntries");
         }
     }
 }
