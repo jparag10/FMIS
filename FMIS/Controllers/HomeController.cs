@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -10,6 +12,8 @@ namespace FMIS.Controllers
 {
     public class HomeController : Controller
     {
+        static string disease;
+        DiseaseCheck dc = new DiseaseCheck();
         Medicaldbcontext db = new Medicaldbcontext();
         public ActionResult Index()
         {
@@ -311,10 +315,85 @@ namespace FMIS.Controllers
             }
         }
 
-            // return View();
-        
+        // return View();
 
+        //////////// User Part /////////////////////////////////
+        //////////////////////////
+        /////////////////////////
+        ////////////////////////
+        ///
         
+        [HttpPost]
+        public JsonResult Test(string value)
+        {
+            disease = value;
+            dc.disease = value;
+
+
+            TempData["Test"] = value;
+            return Json(new
+            {
+                result = "OK"
+            });
+        }
+
+        // GET: Home
+        [HttpGet]
+        public PartialViewResult Show()
+        {
+            string dis = disease;
+            DataSet ds = new DataSet();
+            string constr = ConfigurationManager.ConnectionStrings["Medicaldbcontext"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                string query = "SELECT Disease, WhatToEat, NotToEat,Name From DieticianDataEntries inner join Dieticians on Dieticians.did = DieticianDataEntries.Dietician_did where Disease ='"+disease+"'";
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.Connection = con;
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        sda.Fill(ds);
+                    }
+                }
+            }
+
+
+            return PartialView(ds);
+        }
+        public ActionResult DisplayToUser()
+        {
+
+            return View();
+        }
+
+
+        public PartialViewResult DiseaseDiv(string diseases)
+        {
+
+            DataSet ds = new DataSet();
+            string constr = ConfigurationManager.ConnectionStrings["Medicaldbcontext"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                string query = "SELECT distinct disease FROM DieticianDataEntries order by Disease ";
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.Connection = con;
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        sda.Fill(ds);
+                    }
+                }
+            }
+            return PartialView(ds);
+        }
+
+        public PartialViewResult DiseaseSub()
+        {
+            return PartialView();
+        }
+
+
+
 
 
 
