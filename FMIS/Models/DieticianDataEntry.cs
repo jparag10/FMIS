@@ -13,7 +13,7 @@ namespace FMIS.Models
         public int ddeID { get; set; }
         //public Dietician Dietician { get; set; }
         //public Dietician did { get; set; }
-        public Diseases Disease { get; set; }
+        public string Disease { get; set; }
         public string WhatToEat { get; set; }
         public string NotToEat { get; set; }
 

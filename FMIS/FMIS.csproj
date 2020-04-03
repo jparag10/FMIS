@@ -131,29 +131,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003301336214_initialmodel.cs" />
-    <Compile Include="Migrations\202003301336214_initialmodel.designer.cs">
-      <DependentUpon>202003301336214_initialmodel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003301603217_secondmodel.cs" />
-    <Compile Include="Migrations\202003301603217_secondmodel.designer.cs">
-      <DependentUpon>202003301603217_secondmodel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003311358389_dde_first.cs" />
-    <Compile Include="Migrations\202003311358389_dde_first.designer.cs">
-      <DependentUpon>202003311358389_dde_first.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003311615424_dde_second.cs" />
-    <Compile Include="Migrations\202003311615424_dde_second.designer.cs">
-      <DependentUpon>202003311615424_dde_second.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003311619328_dde_second1.cs" />
-    <Compile Include="Migrations\202003311619328_dde_second1.designer.cs">
-      <DependentUpon>202003311619328_dde_second1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004010720052_dde_third.cs" />
-    <Compile Include="Migrations\202004010720052_dde_third.designer.cs">
-      <DependentUpon>202004010720052_dde_third.cs</DependentUpon>
+    <Compile Include="Migrations\202004021719133_fms.cs" />
+    <Compile Include="Migrations\202004021719133_fms.designer.cs">
+      <DependentUpon>202004021719133_fms.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dietician.cs" />
@@ -229,23 +209,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003301336214_initialmodel.resx">
-      <DependentUpon>202003301336214_initialmodel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003301603217_secondmodel.resx">
-      <DependentUpon>202003301603217_secondmodel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003311358389_dde_first.resx">
-      <DependentUpon>202003311358389_dde_first.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003311615424_dde_second.resx">
-      <DependentUpon>202003311615424_dde_second.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003311619328_dde_second1.resx">
-      <DependentUpon>202003311619328_dde_second1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004010720052_dde_third.resx">
-      <DependentUpon>202004010720052_dde_third.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004021719133_fms.resx">
+      <DependentUpon>202004021719133_fms.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -192,6 +192,32 @@ namespace FMIS.Controllers
 
         public ActionResult DieticianDataEntry(DieticianDataEntry dde)
         {
+            Medicaldbcontext db = new Medicaldbcontext();
+
+            DataTable ds = new DataTable();
+            List<String> dr = new List<String>();
+            string constr = ConfigurationManager.ConnectionStrings["Medicaldbcontext"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                string query = "SELECT distinct Disease FROM DieticianDataEntries order by Disease ";
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.Connection = con;
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        sda.Fill(ds);
+                        foreach (DataRow row in ds.Rows)
+                        {
+                            dr.Add(row["Disease"].ToString());
+                        }
+                        ViewBag.dis = new SelectList(dr);
+
+                    }
+
+
+                }
+
+            }
             if (Session["email"] == null)
             {
                 return RedirectToAction("Login", "Home");
@@ -219,9 +245,39 @@ namespace FMIS.Controllers
                 return View();
             }
         }
+        
         [HttpPost]
-        public ActionResult DieticianDataEntry(DieticianDataEntry dde,string Add,string Search, string Update, string Delete)
+        public ActionResult DieticianDataEntry(DieticianDataEntry dde,string Add,string Search, string Update, string Delete,string adddisease)
         {
+            DataTable ds = new DataTable();
+            List<String> dr = new List<String>();
+            string constr = ConfigurationManager.ConnectionStrings["Medicaldbcontext"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                string query = "SELECT distinct Disease FROM DieticianDataEntries order by Disease ";
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.Connection = con;
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        if (adddisease != null)
+                        {
+                            dr.Add(adddisease);
+                        }
+                        sda.Fill(ds);
+                        foreach (DataRow row in ds.Rows)
+                        {
+                            dr.Add(row["Disease"].ToString());
+                        }
+                        ViewBag.dis = new SelectList(dr);
+
+                    }
+
+
+                }
+
+            }
+
             string email = Session["email"].ToString();
             int dieticianid = db.Database.SqlQuery<int>("Select did from Dieticians where email=@email", new SqlParameter("@email", email)).FirstOrDefault();
             if (Session["email"] == null)

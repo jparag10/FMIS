@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <title>Register Form</title>
+    <style>
+        #dd, #adddis {
+            display: block;
+            float:left;
+        }
+    </style>
     <script>
         $("#cleartext").click(function () {
             $(this).closest('form').find("input[type=text],textarea").val("");
@@ -13,6 +19,7 @@
         $("#addtext").click(function () {
             $(this).closest('form').find("input[type=text],textarea").val(@ViewBag.whatte);
         });
+
     </script>
 </head>
 <body>
@@ -45,12 +52,39 @@
                     </div>
                     @ViewBag.AlreadyExist
                     //@Html.TextBoxFor(x => x.Dietician.did, new { @class = "form-control" })
-                    <div class="form-group">
-                        <h3> Disease : </h3>
-                        @Html.EnumDropDownListFor(
-                            x => x.Disease, "Select Type", new { @class = "form-control" })
-                        <br />
-                    </div>
+            <div class="form-group">
+                <h3> Disease : </h3>
+                
+                    @try
+                    {
+                        @Html.DropDownListFor(
+                            x => x.Disease, ViewBag.dis as SelectList, "Select Type", new { id="dd",@class = "form-control" })
+
+                    }
+                    catch { }
+                    <button style="margin-left:10px" name="adddis" class="btn btn-success" type="button" value="adddis" id="adddis" onclick="showdis()">+</button>
+                
+
+
+                <br />
+            </div>
+            <script>
+                function showdis() {
+                    document.getElementById("da");
+                    if (da.style.display === "none") {
+                        da.style.display = "block";
+                    }
+                    else {
+                        da.style.display = "none";
+                    }
+                }
+            </script>
+            <div id="da" class="form-control" style="height:auto; display:none; padding:10px; border:none" >
+                <input class="form-control" type="text" id="adddisease" name="adddisease" placeholder="Add Disease To List"/>
+                <button style="margin-top:10px" class="btn btn-success" type="submit" >Add Disease</button>
+                
+            </div>
+            <br />
                     <div class="form-group">
                         <label>What To Eat : </label>
                         @Html.TextArea("WhatToEat", new { @class = "form-control" })
